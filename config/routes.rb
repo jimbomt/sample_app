@@ -1,7 +1,6 @@
 SampleApp::Application.routes.draw do
+  resources :users
   
-  get "users/new"
-
   # The stuff below is for static pages (no longer needed)
   #get "pages/home"
   #get "pages/contact"  
