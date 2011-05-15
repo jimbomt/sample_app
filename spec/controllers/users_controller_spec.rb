@@ -299,6 +299,16 @@ describe UsersController do
         response.should redirect_to(root_path)
       end
       
+      it "should deny access to 'new'" do
+        get :new, :id => @user
+        response.should redirect_to(root_path)
+      end
+      
+      it "should deny access to 'create'" do
+        get :create, :id => @user
+        response.should redirect_to(root_path)
+      end
+      
       
     end
     
@@ -342,6 +352,10 @@ describe UsersController do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
       end
+      
+      it "should not destroy himself/herself" 
+      
+      it "should redirect to root if attempting to destroy himself/herself"
       
     end
     
