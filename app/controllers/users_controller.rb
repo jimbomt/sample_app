@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => User.all.to_xml }
+    end
   end
   
   def show
@@ -61,14 +65,31 @@ class UsersController < ApplicationController
     @title = "Following"
     @user = User.find(params[:id])
     @users = @user.following.paginate(:page => params[:page])
-    render 'show_follow'
+    
+    respond_to do |format|
+      format.html { render 'show_follow' }
+      format.xml { render :xml => @user.following.all.to_xml }
+    end
+      
   end
   
   def followers
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(:page => params[:page])
-    render 'show_follow'
+    
+    respond_to do |format|
+      format.html { render 'show_follow' }
+      format.xml { render :xml => @user.followers.all.to_xml }
+    end
+    
+  end
+  
+  def microposts
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.xml { render :xml => @user.microposts.all.to_xml }
+    end
   end
   
   private

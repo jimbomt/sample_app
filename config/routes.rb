@@ -3,7 +3,7 @@ SampleApp::Application.routes.draw do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :microposts
     end
   end
   resources :sessions, :only => [:new, :create, :destroy]

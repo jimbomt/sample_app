@@ -407,4 +407,26 @@ describe UsersController do
     
   end # follow pages
   
+  describe "microposts XML through REST" do
+    
+    describe "when not signed in" do
+      
+      it "should protect 'microposts'" do
+        get :microposts, :id => 1, :format => 'xml'
+        response.should redirect_to(signin_path)
+      end
+    end # when not signed in
+    
+    describe "when signed in" do
+      before(:each) do
+        @user = test_sign_in(Factory(:user))
+      end
+    
+      it "should respond to .xml" do
+        get :microposts, :id => @user, :format => 'xml'
+        response.should be_success
+      end
+    end # when signed in
+  end
+  
 end
