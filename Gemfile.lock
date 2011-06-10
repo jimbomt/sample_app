@@ -101,7 +101,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   gravatar_image_tag
-  rails (= 3.0.6)
+  rails
   rspec
   rspec-rails
   sqlite3
